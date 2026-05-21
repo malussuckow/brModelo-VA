@@ -26,9 +26,9 @@ def login(request):
         if usuario is not None:
             auth_login(request, usuario)
             if usuario.tipo_usuario == 'professor':
-                return redirect('upload_professor')  # ajusta pro nome da sua URL
+                return redirect('upload_professor')  # Redireciona para a página de upload do professor
             else:
-                return redirect('upload')  # ajusta pro nome da sua URL
+                return redirect('upload_aluno') # Redireciona para a página de upload do aluno 
         else:
             form.add_error(None, 'Usuário ou senha inválidos')
     return render(request, 'usuarios/login.html', {'form': form})
