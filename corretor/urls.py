@@ -1,8 +1,8 @@
 from django.urls import path 
-from corretor.views import corretor_View
+from corretor.views import Comparar_xml
 
 urlpatterns = [
-    path('', corretor_View, name='corretor')
+    path('', Comparar_xml, name='corretor')
 ]
 
 
