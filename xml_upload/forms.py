@@ -1,17 +1,23 @@
 from django import forms
+from xml.etree import ElementTree as ET
 
 class Upload_xmlForm(forms.Form):
-    arquivo_xml = forms.FileField()
-    arquivo_xml_professor = forms.FileField()
-
-    def clean_arquivo_xml(self):
-        arquivo = self.cleaned_data['arquivo_xml']
-        if not arquivo.name.endswith('.xml'):
-            raise forms.ValidationError('Suporta apenas arquivos XML.')
-        return arquivo
+    arquivo = forms.FileField()
     
-    def clean_arquivo_xml_professor(self):        
-        arquivo_Professor = self.cleaned_data['arquivo_xml_professor']
-        if not arquivo_Professor.name.endswith('.xml'):         
+    def clean_arquivo(self):
+        arquivo_aluno= self.cleaned_data['arquivo']
+
+        if not arquivo_aluno.name.endswith('.xml'):
             raise forms.ValidationError('Suporta apenas arquivos XML.')
-        return arquivo_Professor
+        
+        try:
+            conteudo=arquivo_aluno.read().decode('utf-8')
+            ET.fromstring(conteudo)
+            arquivo_aluno.seek(0)
+            
+        except ET.ParseError as e:
+            raise forms.ValidationError(f'O arquivo XML é inválido: {e}. Tente novamente.')
+        
+        return arquivo_aluno
+    
+    

@@ -8,17 +8,22 @@
 <body>
     <h1>Upload de Arquivo XML</h1>
 
-    {% if messages %}
-        {% for message in messages %}
-            <p style="color: green;">{{ message }}</p>
-        {% endfor %}
-    {% endif %}
     <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
+
+    <label for="exercicio">Selecione a atividade:</label>
+    <select name="exercicio_id" id="exercicio">
+        {% for exercicio in exercicios %}
+            <option value="{{ exercicio.id }}">{{ exercicio.titulo }}</option>
+        {% endfor %}
+    </select>
+
     {{ form.as_p }}
-    <button type="submit">Upload</button>
+
+    <button type="submit">Comparar</button>
+    <p>Resultado: {{ resultado_final }}%</p>
     </form>
-    
+
 </body>
 </html>
 
