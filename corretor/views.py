@@ -17,28 +17,28 @@ def CalcularSimilaridade(a,b):
     
 
 def Comparar_xml(xml_base, xml_submetido):
-        try:
-            tree_base = ET.fromstring(xml_base)
+    try:
+        tree_base = ET.fromstring(xml_base)
 
-            tree_submetido = ET.fromstring(xml_submetido)
+        tree_submetido = ET.fromstring(xml_submetido)
 
         #contar entidades 
-            count_entidades_base = len(tree_base.findall('Entidade'))
-            count_entidades_submetido = len(tree_submetido.findall('Entidade'))
-            a=abs(((count_entidades_base - count_entidades_submetido)/count_entidades_base)*100)
-
-        #contar relacionamentos
-            count_relacionamentos_base = len(tree_base.findall('Relacionamento'))
-            count_relacionamentos_submetido = len(tree_submetido.findall('Relacionamento'))
-            b=abs(((count_relacionamentos_base - count_relacionamentos_submetido)/count_relacionamentos_base)*100)
-
-            resultado_final = CalcularSimilaridade(a,b)
-            
-          
-        except ET.ParseError:
-            return None
+        count_entidades_base = len(tree_base.findall('Entidade'))
+        count_entidades_submetido = len(tree_submetido.findall('Entidade'))
+        a=abs(((count_entidades_base - count_entidades_submetido)/count_entidades_base)*100)
         
-        return resultado_final
+        #contar relacionamentos
+        count_relacionamentos_base = len(tree_base.findall('Relacionamento'))
+        count_relacionamentos_submetido = len(tree_submetido.findall('Relacionamento'))
+        b=abs(((count_relacionamentos_base - count_relacionamentos_submetido)/count_relacionamentos_base)*100)
+
+        resultado_final = CalcularSimilaridade(a,b)
+            
+
+    except ET.ParseError:
+        return None
+        
+    return resultado_final
 
         
 
