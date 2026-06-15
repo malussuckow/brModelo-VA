@@ -1,0 +1,1 @@
+#aqui fica a função de gerar a média entre as similaridades 
