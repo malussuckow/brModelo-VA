@@ -1,6 +1,5 @@
 import re
 from unidecode import unidecode 
-from corretor.services.logic_parse import logic_service
 
 
 def textNormalizer(texto):
