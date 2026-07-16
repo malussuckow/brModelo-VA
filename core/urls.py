@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path ('',include('home.urls')), #home page
     path('aluno/', include('xml_upload.urls')),#aluno page
-    path ('corretor/',include('corretor.urls')), #corretor page
+    #path ('corretor/',include('corretor.urls')), #corretor page
     path('cadastro/', include('usuarios.urls')),#usuarios page
     path('professor/', include('xml_upload.urls')), #professor page
 
