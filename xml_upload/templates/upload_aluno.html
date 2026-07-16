@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,8 +21,32 @@
     {{ form.as_p }}
 
     <button type="submit">Comparar</button>
-    <p>Resultado: {{ resultado_final }}%</p>
-    </form>
+
+    <h2>Similaridade Semantica</h2>
+    
+    <h3>Entidades</h3>
+    <ul>
+    {% for nome, dados in resultado.entidades.items %}
+        <li>{{ nome }} ↔ {{ dados.match }} (Score: {{ dados.score }})</li>
+    {% endfor %}
+    </ul>
+
+    <h3>Relacionamentos</h3>
+    <ul>
+    {% for nome, dados in resultado.relacionamentos.items %}
+        <li>{{ nome }} ↔ {{ dados.match }} (Score: {{ dados.score }})</li>
+    {% endfor %}
+    </ul>
+
+    <h3>Atributos</h3>
+    <ul>
+    {% for nome, dados in resultado.atributos.items %}
+        <li>{{ nome }} ↔ {{ dados.match }} (Score: {{ dados.score }})</li>
+    {% endfor %}
+    </ul>
+
+    <p>Média geral: {{ resultado.media_geral }}</p>
+    
 
 </body>
 </html>
