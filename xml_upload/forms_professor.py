@@ -1,7 +1,7 @@
 from django import forms
 import xml.etree.ElementTree as ET
 
-class Upload_xml_professor(forms.Form):
+class forms_xml_professor(forms.Form):
     titulo = forms.CharField(max_length=100)
     descricao = forms.CharField(widget=forms.Textarea)
     xml_base = forms.FileField()
