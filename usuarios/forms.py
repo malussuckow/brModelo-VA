@@ -10,11 +10,11 @@ class CadastroForm(UserCreationForm):
     class Meta:
         model = Usuario
         fields = ['username',
-                  'first_name', 
-                  'email', 
-                  'tipo_usuario',
-                  'password1', 
-                  'password2']
+                'first_name', 
+                'email', 
+                'tipo_usuario',
+                'password1', 
+                'password2']
     
         
 class LoginForm(forms.Form):
