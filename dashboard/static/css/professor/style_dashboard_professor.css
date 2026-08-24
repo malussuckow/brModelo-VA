@@ -1,0 +1,50 @@
+.dash-aside{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 100vh;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    background-color: #071524;
+}
+.dash-aside a{
+    color: white;
+}
+.dash-brand-foot{
+    margin-top: auto;
+    font-family:var(--font-mono);
+    font-size:.72rem;
+    color:rgba(240,212,191,.4);
+    padding: 20px;
+}
+.dash-out-Dashboard{
+    margin-top: auto;
+}
+/* Sidebar fechada*/
+
+.dash-aside.fechada{
+    width: 70px;
+}
+
+.dash-aside.fechada a{
+    display: none;
+}
+
+/* botao */
+.btn-dash{
+    border: none;
+    background:#071524;
+    color:white;
+    font-size: 15px;
+    cursor: pointer;
+}
+.btn-dash.fechado{
+    border: none;
+    background:white;
+    color:#071524;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* select class dashboard */
+

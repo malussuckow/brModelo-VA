@@ -1,0 +1,181 @@
+:root{
+  --cream:        #F0D4BF;
+  --brown-mid:     #864C2C;
+  --brown-deep:    #6E3115;
+  --brown-dark:    #4F210D;
+  --navy-black:    #071524;
+  --navy-mid:      #1E3653;
+  --blue-accent:   #305B7E;
+  --caramel-coffe: #6F4E37;
+
+
+  --ink:           var(--navy-black);
+  --paper:         #FBF2EA;
+
+  --font-display:  'Fraunces', Georgia, serif;
+  --font-body:     'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono:     'IBM Plex Mono', monospace;
+
+  --radius:        10px;
+  --ease:          cubic-bezier(.22,1,.36,1);
+}
+
+*{ box-sizing:border-box; 
+    margin:0; 
+    padding:0; }
+
+html{ scroll-behavior:smooth; }
+
+body{
+  font-family:var(--font-body);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{ color:inherit; text-decoration:none; }
+img,svg{ display:block; max-width:100%; }
+button{ font-family:inherit; cursor:pointer; border:none; }
+
+.container{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 32px;
+}
+
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--blue-accent);
+}
+
+/* ===========================================================
+   Nav — aparece em toda página logada e deslogada
+   =========================================================== */
+.nav{
+  position:sticky; top:0; z-index:50;
+  background:rgba(251,242,234,.88);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(7,21,36,.08);
+}
+.nav .container{
+  display:flex; align-items:center; justify-content:space-between;
+  height:76px;
+}
+.brand{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:1.35rem;
+  letter-spacing:-.01em;
+  display:flex; align-items:baseline; gap:2px;
+}
+.brand .x{ color:var(--brown-mid); }
+.nav-links{ display:flex; align-items:center; gap:36px; }
+.nav-links a{
+  font-size:.94rem;
+  color:var(--navy-mid);
+  transition:color .2s var(--ease);
+}
+.nav-links a:hover{ color:var(--brown-mid); }
+
+/* ===========================================================
+   Botões
+   =========================================================== */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:8px;
+  padding:11px 24px;
+  border-radius:var(--radius);
+  font-size:.92rem;
+  font-weight:600;
+  transition:transform .2s var(--ease), background .2s var(--ease), box-shadow .2s var(--ease);
+}
+.btn-primary{
+  background:var(--brown-mid);
+  color:var(--paper);
+  box-shadow:0 1px 0 rgba(0,0,0,.15), 0 8px 20px -10px rgba(134,76,44,.7);
+}
+.btn-primary:hover{ background:var(--brown-deep); transform:translateY(-1px); }
+.btn-ghost{
+  background:transparent;
+  color:var(--navy-black);
+  border:1px solid rgba(7,21,36,.18);
+}
+.btn-ghost:hover{ border-color:var(--navy-black); }
+.btn-block{ width:100%; }
+
+/* ===========================================================
+   Footer
+   =========================================================== */
+.footer{
+  background-color: white;
+  color:var(--navy-black);
+  font-size:.85rem;
+  padding:32px 0;
+}
+.footer .container{
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:12px;
+}
+
+/* ===========================================================
+   Responsive
+   =========================================================== */
+@media (max-width:900px){
+  .nav-links{ display:none; }
+}
+
+/* ===========================================================
+   Form components
+   =========================================================== */
+.field{ margin-bottom:20px; }
+
+.field label{
+  display:block;
+  font-size:.82rem;
+  font-weight:600;
+  margin-bottom:7px;
+  color:var(--navy-black);
+}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  padding:12px 14px;
+  border:1px solid rgba(7,21,36,.18);
+  border-radius:8px;
+  font-family:var(--font-body);
+  font-size:.95rem;
+  background:#fff;
+  transition:border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  outline:none;
+  border-color:var(--blue-accent);
+  box-shadow:0 0 0 3px rgba(48,91,126,.16);
+}
+
+.errorlist{
+  list-style:none;
+  background:rgba(134,76,44,.1);
+  border:1px solid rgba(134,76,44,.3);
+  color:var(--brown-deep);
+  padding:10px 14px;
+  border-radius:8px;
+  font-size:.85rem;
+  margin-bottom:18px;
+}
+
+.field-help{
+  display:block;
+  margin-top:6px;
+  font-size:.78rem;
+  color:rgba(7,21,36,.5);
+}
