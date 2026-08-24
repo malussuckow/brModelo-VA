@@ -1,20 +1,145 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css">
 </head>
 <body>
-    <h1>Cadastro</h1>
-    <p>Informe seus dados para criar uma nova conta.</p>
+<div class="auth-wrap">
 
-    <form method="POST">
+    <div class="auth-brand">
+        <div class="auth-brand-top">
+        <a href="{% url 'home' %}" class="brand">corretor<span class="x">xml</span></a>
+    </div>
+
+    <div class="auth-brand-mid">
+        <h2>Cada diagrama conta uma história.<br>A gente compara as duas versões.</h2>
+        <p>Crie sua conta para enviar submissões, revisar exercícios ou acompanhar o progresso da turma.</p>
+
+        <svg viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+  <!-- Grafo esquerdo -->
+        <g stroke="#864C2C" stroke-width="1.4" fill="none" opacity="0.85">
+            <line x1="40" y1="20" x2="20" y2="60"/>
+            <line x1="40" y1="20" x2="60" y2="60"/>
+            <line x1="20" y1="60" x2="10" y2="105"/>
+            <line x1="20" y1="60" x2="35" y2="105"/>
+            <line x1="60" y1="60" x2="50" y2="105"/>
+            <line x1="60" y1="60" x2="75" y2="105"/>
+        </g>
+
+        <g fill="#F0D4BF" stroke="#864C2C" stroke-width="1.4">
+            <circle cx="40" cy="20" r="5"/>
+            <circle cx="20" cy="60" r="5"/>
+            <circle cx="60" cy="60" r="5"/>
+            <circle cx="10" cy="105" r="5"/>
+            <circle cx="35" cy="105" r="5"/>
+            <circle cx="50" cy="105" r="5"/>
+            <circle cx="75" cy="105" r="5"/>
+        </g>
+
+  <!-- Grafo direito -->
+        <g stroke="#305B7E" stroke-width="1.4" fill="none" opacity="0.85">
+            <line x1="230" y1="20" x2="210" y2="60"/>
+            <line x1="230" y1="20" x2="250" y2="60"/>
+            <line x1="210" y1="60" x2="195" y2="105"/>
+            <line x1="210" y1="60" x2="220" y2="105"/>
+            <line x1="250" y1="60" x2="240" y2="105"/>
+            <line x1="250" y1="60" x2="265" y2="105"/>
+        </g>
+
+        <g fill="#1E3653" stroke="#305B7E" stroke-width="1.4">
+            <circle cx="230" cy="20" r="5"/>
+            <circle cx="210" cy="60" r="5"/>
+            <circle cx="250" cy="60" r="5"/>
+            <circle cx="195" cy="105" r="5"/>
+            <circle cx="220" cy="105" r="5"/>
+            <circle cx="240" cy="105" r="5"/>
+            <circle cx="265" cy="105" r="5"/>
+        </g>
+
+  <!-- Ligações -->
+        <g stroke="#F0D4BF" stroke-width="1" stroke-dasharray="3 4" opacity="0.5">
+            <line x1="40" y1="20" x2="230" y2="20"/>
+            <line x1="20" y1="60" x2="210" y2="60"/>
+            <line x1="60" y1="60" x2="250" y2="60"/>
+            <line x1="35" y1="105" x2="220" y2="105"/>
+            <line x1="50" y1="105" x2="240" y2="105"/>
+        </g>
+
+    </svg>
+    </div>
+
+    <div class="auth-brand-foot">IFC · CAMPUS CAMBORIÚ</div>
+  </div>
+
+  <div class="auth-form-side">
+    <div class="auth-card">
+      <span class="eyebrow">Comece agora</span>
+      <h1>Criar conta</h1>
+      <p>Informe seus dados para criar uma nova conta.</p>
+
+      {% if form.non_field_errors %}
+        <ul class="errorlist">
+          {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <form method="post" novalidate>
+
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Cadastrar</button>
-</form>
-    
+
+        {% for field in form %}
+          <div class="field
+              {% if field.name == 'turma' %}campo-turma{% endif %}
+              {% if field.name == 'instituicao' %}campo-instituicao{% endif %}"
+              {% if field.name == 'turma' %}id="wrapper-turma" style="display: none;"{% endif %}>
+            {{ field.label_tag }}
+
+            {% if field.name == "password1" or field.name == "password2" %}
+              <div class="password-field">
+                {{ field }}
+                <button type="button" class="toggle-password">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            {% else %}
+              {{ field }}
+            {% endif %}
+
+            {% if field.help_text %}
+              <small class="field-help">{{ field.help_text }}</small>
+            {% endif %}
+
+            {% if field.errors %}
+              <ul class="errorlist">
+                {% for error in field.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+      </form>
+
+      <p class="auth-foot">Já tem conta? <a href="{% url 'login' %}">Entrar</a></p>
+    </div>
+  </div>
+
+</div>
+
+    <script src="{% static 'js/password.js' %}"></script>
+    <script src="{% static 'js/updateFieldTurma.js' %}"></script>
+
 </body>
 </html>
-

@@ -1,13 +1,171 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="shortcut icon" href="{% static 'icon/favicon.ico' %}" type="image/x-icon">
+    
+
 </head>
 <body>
-    <h1>Bem vindo!</h1>
-    <p>Já possui uma conta? <a href="{% url 'login' %}">Faça login</a></p>
-    <p>Não tem uma conta? <a href="{% url 'cadastro' %}">Cadastre-se</a></p>
+    <nav class="nav">
+  <div class="container">
+    <a href="{% url 'home' %}" class="brand">corretor<span class="x">xml</span></a>
+    <div class="nav-links">
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#recursos">Recursos</a>
+      <a href="{% url 'login' %}" class="btn btn-ghost">Entrar</a>
+      <a href="{% url 'cadastro' %}" class="btn btn-ghost">Cadastro</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-copy">
+      <span class="eyebrow">Correção assistida de diagramas ER</span>
+      <h1>Corrija, aprenda e evolua com inteligência.</h1>
+      <p class="lead">
+        Envie o XML do diagrama entidade-relacionamento do aluno e o corretorxml
+        compara automaticamente com o gabarito — por estrutura, nomes e semântica —
+        e devolve um retorno detalhado em segundos.
+      </p>
+      <div class="hero-ctas">
+        <a href="{% url 'login' %}" class="btn btn-primary">Começar a corrigir</a>
+        <a href="#como-funciona" class="btn btn-ghost">Ver como funciona</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <!-- Signature: dois grafos (submissão x gabarito) sendo reconciliados -->
+      <svg viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <marker id="dot" markerWidth="6" markerHeight="6" refX="3" refY="3">
+            <circle cx="3" cy="3" r="2.4" fill="#305B7E"/>
+          </marker>
+        </defs>
+
+        <!-- submitted graph (warm) -->
+        <text x="18" y="26" class="graph-caption">SUBMISSAO.XML</text>
+        <g stroke="#864C2C" stroke-width="1.6" fill="none" opacity="0.9">
+          <line x1="40" y1="60" x2="130" y2="45"/>
+          <line x1="40" y1="60" x2="55" y2="140"/>
+          <line x1="130" y1="45" x2="150" y2="120"/>
+          <line x1="55" y1="140" x2="150" y2="120"/>
+        </g>
+        <g fill="#F0D4BF" stroke="#864C2C" stroke-width="1.6">
+          <circle cx="40" cy="60" r="7"/>
+          <circle cx="130" cy="45" r="7"/>
+          <circle cx="150" cy="120" r="7"/>
+          <circle cx="55" cy="140" r="7"/>
+        </g>
+
+        <!-- reference graph (cool) -->
+        <text x="250" y="300" class="graph-caption">GABARITO.XML</text>
+        <g stroke="#305B7E" stroke-width="1.6" fill="none" opacity="0.9">
+          <line x1="270" y1="330" x2="360" y2="315"/>
+          <line x1="270" y1="330" x2="285" y2="390"/>
+          <line x1="360" y1="315" x2="378" y2="378"/>
+          <line x1="285" y1="390" x2="378" y2="378"/>
+        </g>
+        <g fill="#1E3653" stroke="#305B7E" stroke-width="1.6">
+          <circle cx="270" cy="330" r="7"/>
+          <circle cx="360" cy="315" r="7"/>
+          <circle cx="378" cy="378" r="7"/>
+          <circle cx="285" cy="390" r="7"/>
+        </g>
+
+        <!-- matching / reconciliation lines -->
+        <g stroke="#F0D4BF" stroke-width="1" stroke-dasharray="3 4" opacity="0.55">
+          <line x1="150" y1="120" x2="270" y2="330"/>
+          <line x1="130" y1="45" x2="360" y2="315"/>
+          <line x1="55" y1="140" x2="285" y2="390"/>
+        </g>
+
+        <text x="176" y="235" class="graph-caption" opacity="0.8">92% correspondência</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="como-funciona">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">O processo</span>
+      <h2>Três passos, do XML ao resultado</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-index">01</span>
+        <h3>Envio</h3>
+        <p>O aluno envia o diagrama exportado em XML pela própria plataforma. Sem instalar nada.</p>
+      </div>
+      <div class="step">
+        <span class="step-index">02</span>
+        <h3>Análise</h3>
+        <p>O sistema constrói o grafo do diagrama e compara estrutura, nomes e significado com o gabarito do professor.</p>
+      </div>
+      <div class="step">
+        <span class="step-index">03</span>
+        <h3>Retorno</h3>
+        <p>Professor e aluno recebem um relatório claro: o que bateu, o que ficou diferente e por quê.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="recursos">
+  <div class="container section">
+    <div class="section-head">
+      <span class="eyebrow" style="color:var(--cream)">Recursos</span>
+      <h2>Feito para quem corrige e para quem entrega</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature">
+        <span class="tag">Similaridade léxica</span>
+        <h3>Reconhece variações de nome</h3>
+        <p>Compara nomes de entidades e atributos mesmo quando escritos de forma diferente do gabarito.</p>
+      </div>
+      <div class="feature">
+        <span class="tag">Similaridade semântica</span>
+        <h3>Entende sinônimos</h3>
+        <p>Usa embeddings para identificar quando duas entidades significam a mesma coisa, não só quando são idênticas.</p>
+      </div>
+      <div class="feature">
+        <span class="tag">Fluxo do professor</span>
+        <h3>Aprovação de exercícios</h3>
+        <p>Professores cadastram exercícios e gabaritos, e acompanham as submissões dos alunos em um só lugar.</p>
+      </div>
+      <div class="feature">
+        <span class="tag">Relatório</span>
+        <h3>Retorno explicável</h3>
+        <p>Cada divergência apontada vem com o motivo, para que o aluno entenda o que revisar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container" id="ready">
+    <h2>Pronto para corrigir seu primeiro diagrama?</h2>
+    <p>Crie sua conta como professor ou aluno e comece a usar o corretorxml agora.</p>
+    <a href="{% url 'login' %}" class="btn btn-primary">Entrar na plataforma</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <span>corretorxml</span>
+    <span>Instituto Federal Catarinense — Campus Camboriú</span>
+  </div>
+</footer>
+
+
+
 </body>
 </html>

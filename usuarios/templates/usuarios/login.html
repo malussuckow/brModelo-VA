@@ -1,21 +1,113 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css">
 </head>
 <body>
-   <h1>Login Page</h1>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Entrar</button>
-    </form>
+<div class="auth-wrap">
 
-    <p>Não possui cadastro? <a href="{% url 'cadastro' %}">Clique aqui</a></p>
-    
+  <div class="auth-brand">
+    <div class="auth-brand-top">
+      <a href="{% url 'home' %}" class="brand">corretor<span class="x">xml</span></a>
+    </div>
+
+    <div class="auth-brand-mid">
+        <h2>Cada diagrama conta uma história.<br>A gente compara as duas versões.</h2>
+        <p>Entre para enviar submissões, revisar exercícios ou acompanhar o progresso da turma.</p>
+
+        <svg viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="margin-top:32px;">
+        <g stroke="#864C2C" stroke-width="1.4" fill="none" opacity="0.85">
+          <line x1="20" y1="30" x2="80" y2="20"/>
+          <line x1="20" y1="30" x2="30" y2="90"/>
+          <line x1="80" y1="20" x2="95" y2="75"/>
+        </g>
+        <g fill="#F0D4BF" stroke="#864C2C" stroke-width="1.4">
+          <circle cx="20" cy="30" r="5"/>
+          <circle cx="80" cy="20" r="5"/>
+          <circle cx="95" cy="75" r="5"/>
+          <circle cx="30" cy="90" r="5"/>
+        </g>
+        <g stroke="#305B7E" stroke-width="1.4" fill="none" opacity="0.85">
+          <line x1="200" y1="60" x2="260" y2="50"/>
+          <line x1="200" y1="60" x2="210" y2="120"/>
+          <line x1="260" y1="50" x2="275" y2="105"/>
+        </g>
+        <g fill="#1E3653" stroke="#305B7E" stroke-width="1.4">
+          <circle cx="200" cy="60" r="5"/>
+          <circle cx="260" cy="50" r="5"/>
+          <circle cx="275" cy="105" r="5"/>
+          <circle cx="210" cy="120" r="5"/>
+        </g>
+        <g stroke="#F0D4BF" stroke-width="1" stroke-dasharray="3 4" opacity="0.5">
+          <line x1="95" y1="75" x2="200" y2="60"/>
+          <line x1="30" y1="90" x2="210" y2="120"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="auth-brand-foot">IFC · CAMPUS CAMBORIÚ</div>
+  </div>
+
+  <div class="auth-form-side">
+    <div class="auth-card">
+      <span class="eyebrow">Bem-vindo de volta</span>
+      <h1>Entrar</h1>
+      <p>Acesse sua conta de professor ou aluno.</p>
+
+      {% if form.non_field_errors %}
+        <ul class="errorlist">
+          {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <form method="post" novalidate>
+    {% csrf_token %}
+
+    {% for field in form %}
+      <div class="field">
+        {{ field.label_tag }}
+
+        {% if field.name == "password" %}
+          <div class="password-field">
+            {{ field }}
+            <button type="button" class="toggle-password">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+        {% else %}
+          {{ field }}
+        {% endif %}
+
+        {% if field.errors %}
+          <ul class="errorlist">
+            {% for error in field.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+      <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+      </form>
+
+      <p class="auth-foot">Não possui cadastro? <a href="{% url 'cadastro' %}">Clique aqui</a></p>
+    </div>
+  </div>
+
+</div>
+
+    <script src="{% static 'js/password.js' %}"></script>
 </body>
 </html>
 
