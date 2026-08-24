@@ -10,9 +10,9 @@ def cadastro(request):
         usuario.tipo_usuario = form.cleaned_data['tipo_usuario']
         usuario.save()
         if usuario.tipo_usuario == 'aluno':
-            Aluno.objects.create(usuario=usuario)
+            Aluno.objects.create(usuario=usuario, turma=form.cleaned_data['turma'])
         else:
-            Professor.objects.create(usuario=usuario)
+            Professor.objects.create(usuario=usuario, instituicao=form.cleaned_data['instituicao'])
         return redirect('login')
     return render(request, 'usuarios/cadastro.html', {'form': form})
 
@@ -26,9 +26,9 @@ def login(request):
         if usuario is not None:
             auth_login(request, usuario)
             if usuario.tipo_usuario == 'professor':
-                return redirect('upload_professor')  # Redireciona para a página de upload do professor
-            else:
-                return redirect('upload_aluno') # Redireciona para a página de upload do aluno 
+                return redirect('dashboard_professor') 
+            elif usuario.tipo_usuario == "aluno":
+                return redirect('dashboard_aluno') 
         else:
             form.add_error(None, 'Usuário ou senha inválidos')
     return render(request, 'usuarios/login.html', {'form': form})
