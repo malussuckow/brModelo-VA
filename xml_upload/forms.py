@@ -1,6 +1,5 @@
 from django import forms
 from xml.etree import ElementTree as ET
-from corretor.parser.xml_parser import parse_xml
 
 class Upload_xmlForm(forms.Form):
     arquivo = forms.FileField()

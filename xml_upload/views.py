@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from xml_upload.forms_professor import forms_xml_professor
 from xml_upload.forms import Upload_xmlForm
 from corretor.models import Exercicio, Submissao
