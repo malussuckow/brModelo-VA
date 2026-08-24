@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/professor/style_dashboard_professor.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css">
+
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="dash-pr">
+    <nav class="nav">
+        <div class="container">
+            <a href="{% url 'home' %}" class="brand">corretor<span class="x">xml</span></a>
+        <div class="nav-links">
+            <a href="{% url 'home' %}" class="btn btn-ghost">Sair</a>
+        </div>
+        </div>
+    </nav>
+
+        <aside class="dash-aside">
+            <div class="dash-register">
+
+                <button class="btn-dash" id="btn-dash">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <br>
+               <a href="{% url 'upload_professor'%}">Cadastrar Atividade</a>
+            </div>
+
+            <div class='challenge'>
+                <a href="{% url 'desafio_professor'%}">Cadastrar Desafios</a>
+            </div>
+
+            <div class="dash-register-class">
+                <a href="{% url 'cadastro_turma'%}">Cadastrar Turma</a>
+            </div>
+
+            <a href="{% url 'home'%}" class="dash-out-Dashboard">SAIR</a>
+
+            <div class="dash-brand-foot">IFC · CAMPUS CAMBORIÚ</div>
+            
+        </aside>
+
+            <select name="turma" id="turma"  class="select-dash">
+                <option value="">Selecionar Turma</option>
+                {% for turmas in turma %}
+                    <option value="{{turmas.id}}">
+                        {{turmas.nome}}
+                    </option>
+                {% endfor %}
+            </select>
+
+    <div class="dash-chart">
+    </div>
+
+    <script src="{% static 'js/sidebar.js' %}"></script>
+</body>
+</html>

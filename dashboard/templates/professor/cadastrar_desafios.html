@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafios</title>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/professor/style_desafio.css' %}">
+</head>
+<body>
+    <nav class="nav">
+  <div class="container">
+    <a href="{% url 'home' %}" class="brand">corretor<span class="x">xml</span></a>
+    <div class="nav-links">
+      <a href="{% url 'dashboard_professor' %}" class="btn btn-ghost">Voltar</a>
+    </div>
+  </div>
+</nav>
+    <main class="challenge-page">
+        <div class="challenge-card">
+            <span class="eyebrow">Desafios</span>
+            <h1>Criar novo desafio</h1>
+            <p>Preencha os campos abaixo para cadastrar um desafio.</p>
+
+            {% if form.non_field_errors %}
+              <ul class="errorlist">
+                {% for error in form.non_field_errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+
+            <form method="POST" novalidate>
+                {% csrf_token %}
+
+                {% for field in form %}
+                  <div class="field">
+                    {{ field.label_tag }}
+                    {{ field }}
+
+                    {% if field.help_text %}
+                      <small class="field-help">{{ field.help_text }}</small>
+                    {% endif %}
+
+                    {% if field.errors %}
+                      <ul class="errorlist">
+                        {% for error in field.errors %}
+                          <li>{{ error }}</li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary btn-block">Criar Desafio</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
