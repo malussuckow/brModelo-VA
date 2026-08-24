@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'corretor',
     'xml_upload',
     'usuarios',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
@@ -127,5 +128,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 AUTH_USER_MODEL = 'usuarios.Usuario'  # formato: 'nome_do_app.NomeDoModelo'
