@@ -1,0 +1,119 @@
+/* ===========================================================
+    página de upload + resultado
+   =========================================================== */
+
+.upload-page{
+  padding:56px 0 96px;
+}
+
+.page-head{
+  max-width:640px;
+  margin-bottom:36px;
+}
+.page-head h1{
+  font-family:var(--font-display);
+  font-size:clamp(1.6rem, 2.6vw, 2.1rem);
+  margin:10px 0 10px;
+}
+.page-head p{
+  color:rgba(7,21,36,.65);
+  font-size:.95rem;
+}
+
+.upload-card{
+  background:#fff;
+  border:1px solid rgba(7,21,36,.1);
+  border-radius:var(--radius);
+  padding:32px;
+  max-width:700px;
+  align-items:center;
+  box-shadow:0 20px 40px -28px rgba(7,21,36,.18);
+  margin-bottom:56px;
+}
+.upload-card select{
+  width:100%;
+  padding:12px 14px;
+  border:1px solid rgba(7,21,36,.18);
+  border-radius:8px;
+  background:#fff;
+  font-family:var(--font-body);
+  font-size:.95rem;
+}
+
+/* ===========================================================
+   Resultados
+   =========================================================== */
+.results{
+  max-width:720px;
+}
+
+.result-summary{
+  background:var(--navy-black);
+  color:var(--paper);
+  border-radius:var(--radius);
+  padding:28px 32px;
+  margin-bottom:32px;
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+}
+.result-summary .eyebrow{ color:var(--cream); }
+.result-summary-score{
+  font-family:var(--font-display);
+  font-size:2.4rem;
+  color:var(--cream);
+}
+
+.result-group{ margin-bottom:32px; }
+.result-group h2{
+  font-family:var(--font-display);
+  font-size:1.15rem;
+  margin-bottom:14px;
+  color:var(--navy-black);
+}
+
+.match-list{ list-style:none; }
+.match-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:12px 16px;
+  background:#fff;
+  border:1px solid rgba(7,21,36,.08);
+  border-radius:8px;
+  margin-bottom:8px;
+  font-size:.92rem;
+}
+.match-pair{ color:var(--navy-black); }
+.match-arrow{ color:var(--blue-accent); margin:0 4px; }
+
+.score-badge{
+  font-family:var(--font-mono);
+  font-size:.78rem;
+  font-weight:600;
+  padding:4px 10px;
+  border-radius:999px;
+  flex-shrink:0;
+}
+.score-high{
+  background:rgba(48,91,126,.14);
+  color:var(--blue-accent);
+}
+.score-mid{
+  background:rgba(134,76,44,.14);
+  color:var(--brown-mid);
+}
+.score-low{
+  background:rgba(7,21,36,.08);
+  color:rgba(7,21,36,.55);
+}
+
+.name-group{
+    font-family:var(--font-display);
+}
+
+@media (max-width:600px){
+  .result-summary{ flex-direction:column; align-items:flex-start; gap:10px; }
+  .match-row{ flex-direction:column; align-items:flex-start; gap:6px; }
+}

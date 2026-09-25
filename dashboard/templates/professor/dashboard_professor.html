@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,52 +12,67 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <div class="dash-pr">
     <nav class="nav">
         <div class="container">
-            <a href="{% url 'home' %}" class="brand">corretor<span class="x">xml</span></a>
+            <a href="{% url 'home' %}" class="brand">brModelo-<span class="x">VA</span></a>
         <div class="nav-links">
             <a href="{% url 'home' %}" class="btn btn-ghost">Sair</a>
         </div>
         </div>
     </nav>
 
-        <aside class="dash-aside">
-            <div class="dash-register">
+        <div class="dash-content">
 
-                <button class="btn-dash" id="btn-dash">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-                <br>
-               <a href="{% url 'upload_professor'%}">Cadastrar Atividade</a>
-            </div>
+            <aside class="dash-aside">
+    <button class="btn-dash" id="btn-dash">
+        <i class="fa-solid fa-bars"></i>
+    </button>
 
-            <div class='challenge'>
-                <a href="{% url 'desafio_professor'%}">Cadastrar Desafios</a>
-            </div>
+    <nav class="dash-nav">
+        <a href="{% url 'upload_professor'%}" class="dash-nav-item">
+            <i class="fa-solid fa-file-circle-plus"></i>
+            <span>Cadastrar Atividade</span>
+        </a>
+        <a href="{% url 'desafio_professor'%}" class="dash-nav-item">
+            <i class="fa-solid fa-trophy"></i>
+            <span>Cadastrar Desafios</span>
+        </a>
+        <a href="{% url 'cadastro_turma'%}" class="dash-nav-item">
+            <i class="fa-solid fa-users"></i>
+            <span>Cadastrar Turma</span>
+        </a>
+    </nav>
 
-            <div class="dash-register-class">
-                <a href="{% url 'cadastro_turma'%}">Cadastrar Turma</a>
-            </div>
-
-            <a href="{% url 'home'%}" class="dash-out-Dashboard">SAIR</a>
-
-            <div class="dash-brand-foot">IFC · CAMPUS CAMBORIÚ</div>
-            
-        </aside>
-
-            <select name="turma" id="turma"  class="select-dash">
-                <option value="">Selecionar Turma</option>
-                {% for turmas in turma %}
-                    <option value="{{turmas.id}}">
-                        {{turmas.nome}}
-                    </option>
-                {% endfor %}
-            </select>
-
-    <div class="dash-chart">
+    <div class="dash-aside-footer">
+        <a href="{% url 'home'%}" class="dash-nav-item">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>SAIR</span>
+        </a>
+        <div class="dash-brand-foot">IFC · CAMPUS CAMBORIÚ</div>
     </div>
+</aside>
+                <main class="dash-content-main">
+
+                    <select name="turma-chart" id="turma-chart"  class="select-dash">
+                        <option value="">Selecionar Turma</option>
+                        {% for turmas in turma %}
+                            <option value="{{turmas.id}}">
+                                {{turmas.nome}}
+                            </option>
+                        {% endfor %}
+                    </select>
+            
+                        <div class="dash-chart">
+                            <canvas id="aluno-por-turma"></canvas>
+                        </div>
+                    </main>
+
+
+        </div>
 
     <script src="{% static 'js/sidebar.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'js/professor/graficos_professor.js' %}"></script>
+  
 </body>
 </html>

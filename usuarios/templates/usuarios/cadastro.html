@@ -15,7 +15,7 @@
 
     <div class="auth-brand">
         <div class="auth-brand-top">
-        <a href="{% url 'home' %}" class="brand">corretor<span class="x">xml</span></a>
+        <a href="{% url 'home' %}" class="brand">brModelo-<span class="x">VA</span></a>
     </div>
 
     <div class="auth-brand-mid">
@@ -98,6 +98,8 @@
         {% csrf_token %}
 
         {% for field in form %}
+          {% if field.name != 'instituicao' and field.name != 'turma_nova' %}
+          {% endif %}
           <div class="field
               {% if field.name == 'turma' %}campo-turma{% endif %}
               {% if field.name == 'instituicao' %}campo-instituicao{% endif %}"
@@ -128,6 +130,27 @@
             {% endif %}
           </div>
         {% endfor %}
+
+        <div class="field campo-instituicao">
+          {{ form.instituicao.label_tag }}
+          <select name="instituicao" id="id_instituicao">
+              <option value="">Selecione sua instituição</option>
+            {% for inst in form.instituicao.field.queryset %}
+              <option value="{{ inst.pk }}">{{ inst.nome }}</option>
+            {% endfor %}
+            <option value="nao_encontrei">Não encontrei minha instituição</option>
+          </select>
+        {% if form.instituicao.errors %}
+          <ul class="errorlist">
+        {% for error in form.instituicao.errors %}<li>{{ error }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+
+    <div class="field campo-nova-instituicao" id="wrapper-nova-instituicao" style="display: none;">
+      {{ form.instituicao_nova.label_tag }}
+      {{ form.instituicao_nova }}
+    </div>
 
         <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
       </form>

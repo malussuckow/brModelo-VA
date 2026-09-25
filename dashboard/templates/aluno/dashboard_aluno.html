@@ -4,42 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="{% static 'css/global.css' %}">
-    <link rel="stylesheet" href="{% static 'css/aluno/style_dashboard_aluno.css' %}">
+    <link rel="stylesheet" href="{% static 'css/professor/style_dashboard_professor.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css">
+
     <title>Dashboard</title>
 </head>
 <body>
-     <div class="dash-pr">
     <nav class="nav">
         <div class="container">
-            <a href="{% url 'home' %}" class="brand">corretor<span class="x">xml</span></a>
+            <a href="{% url 'home' %}" class="brand">brModelo-<span class="x">VA</span></a>
         <div class="nav-links">
             <a href="{% url 'home' %}" class="btn btn-ghost">Sair</a>
         </div>
         </div>
     </nav>
 
-        <aside class="dash-aside">
-            <div class="dash-register">
+        <div class="dash-content">
 
-                <button class="btn-dash" id="btn-dash">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-                <br>
-               <a href="{% url 'upload_aluno'%}">Upload de atividades</a>
-            </div>
+            <aside class="dash-aside">
+    <button class="btn-dash" id="btn-dash">
+        <i class="fa-solid fa-bars"></i>
+    </button>
 
-            <div class='challenge'>
-                <a href="{% url 'desafio_alunos'%}">Desafios</a>
-            </div>
+    <nav class="dash-nav">
+        <a href="{% url 'upload_aluno'%}" class="dash-nav-item">
+            <i class="fa-solid fa-file-circle-plus"></i>
+            <span>Submissão de Atividade</span>
+        </a>
+        <a href="{% url 'desafio_alunos'%}" class="dash-nav-item">
+            <i class="fa-solid fa-trophy"></i>
+            <span>Desafios</span>
+        </a>
+    </nav>
 
-            <a href="{% url 'home'%}" class="dash-out-Dashboard">SAIR</a>
+    <div class="dash-aside-footer">
+        <a href="{% url 'home'%}" class="dash-nav-item">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>SAIR</span>
+        </a>
+        <div class="dash-brand-foot">IFC · CAMPUS CAMBORIÚ</div>
+    </div>
+</aside>
+        <div class="dash-chart">
+            <canvas id="numero-submissoes"></canvas>
+        </div>
 
-            <div class="dash-brand-foot">IFC · CAMPUS CAMBORIÚ</div>
-            
-        </aside>
-        
-        <script src="{% static 'js/sidebar.js' %}"></script>
+        </div>
+
+    <script src="{% static 'js/sidebar.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'js/aluno/graficos_alunos.js' %}"></script>
+  
 </body>
 </html>
