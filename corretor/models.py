@@ -7,6 +7,7 @@ class Exercicio(models.Model):
     professor = models.ForeignKey(Professor, on_delete=models.PROTECT)
     data_criacao = models.DateTimeField(auto_now_add=True)
     xml_base = models.TextField()
+    xml_base_grafo = models.JSONField(null=True, blank=True)
 
     class Meta:
         ordering = ['-data_criacao']
@@ -16,6 +17,7 @@ class Exercicio(models.Model):
 
 class Instituicao(models.Model):
     nome=models.CharField(max_length=100)
+    instituicao_nova=models.CharField(max_length=50,null=True,blank=True)
 
     def __str__(self):
         return self.nome
@@ -30,6 +32,7 @@ class Turma(models.Model):
         return self.nome
 
 class Desafio(models.Model):
+    titulo=models.CharField(max_length=50)
     descricao=models.TextField()
     data_inicio=models.DateTimeField()
     data_final=models.DateTimeField()
